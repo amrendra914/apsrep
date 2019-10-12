@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body style="color: red">
+        {{>header}}
+        <h1>Welcome to the home page of weather app</h1>
+        <h2>{{title}}</h2>
+        <form>
+            <input placeholder="address">
+            <button>Search</button>
+            </br>
+            <p1 id="message1"></p1>
+            </br>
+            <p2 id="message2"></p2>
+        </form>
+                <script>
+            //fetch("http://localhost:3001/Weather?address=Boston").then((response) => {
+               // response.json().then((data) =>
+               // {
+                 //   if(data.error)
+                   // {
+                     //   console.log("error is there");
+                    //}
+                    //else{
+                      //  console.log(data.forcast);
+                    //}
+                //})
+            //})
+            const weatherform = document.querySelector("form");
+            const addresssearch = document.querySelector("input");
+            weatherform.addEventListener("submit",(e)=>{
+                e.preventDefault();
+                const loc = addresssearch.value;
+                console.log(loc);
+                fetch("http://localhost:3000/Weather?address="+loc).then((response) => {
+                response.json().then((data) =>
+                {
+                  if(data.error)
+                   {
+                        document.querySelector("#message1").textContent=data.error;
+                    }
+                    else{
+                       //console.log(data.forcast);
+                       document.querySelector("#message1").textContent="Loading...........";
+                       document.querySelector("#message2").innerHTML=data.forcast;
+
+                    }
+                })
+            })
+            })
+        </script>
+
+    </body>
+</html>
