@@ -6,6 +6,8 @@ const hbs = require('hbs');
 const path = require('path');
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 console.log(__dirname);
 console.log(__filename);
 
@@ -92,6 +94,6 @@ app.get("/Weather",(req,res)=>{
 // res.send("hey wats up doing great!");
 // });
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log("server is up")
 })
